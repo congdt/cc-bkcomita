@@ -1,0 +1,1 @@
+We've sent you a email. Please click the link in mail to active you account
