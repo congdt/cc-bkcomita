@@ -11,7 +11,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail; 
 //use Illuminate\Mail\Mailer;
 
-class ActivationController extends Controller
+class ActivationController extends Controller 
 {
     //
 	private $expire_time = 5; // minutes
@@ -34,7 +34,7 @@ class ActivationController extends Controller
 		}
 		$token = $pending_user['token'];
 		//$link = route('activate', $token);
-		$link = "http://epic.co/activate/" . $token;
+		$link = url('/') . '/activate/' . $token;
 		$content = "Activate link : " . $link;
 		Mail::send("activationMail", ['content' => $content], function($message) use ($pending_user){
 			//$message->from("bkcomita@epic.persec.com", "BKCoMiTa Team");
@@ -89,7 +89,8 @@ class ActivationController extends Controller
 				'name' => $pending_user['name'],
 				'email' => $pending_user['email'],
 				'password' => $pending_user['password'],
-				
+				'avatar' => 'default_avatar.png',
+				'wallpaper' => 'default_wall.jpg',
 			]);
 			Album::create([
 				'name' => 'My Pic',

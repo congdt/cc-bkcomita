@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="js/index.js" type="text/javascript"></script>
+  <script src="{{ url('/') . '/storage/js/index.js'}}" type="text/javascript"></script>
   <title>Đăng ảnh</title>
   <style>
     /*CSS cho phần tiêu đề */
@@ -147,7 +147,7 @@
         </span>
         <textarea class="form-control" rows="5" name="description" placeholder="Miêu tả ảnh"></textarea>
         <br>
-        <img src="{{ Storage::url($filePath) }}" width=500px>
+        <img src="{{ url('/') . '/storage/' . $filePath }}" width=500px>
         <input type="hidden" name="filePath" value='{{ $filePath }}'>
 		
         <div class="col-xs-2 form-group">

@@ -4,25 +4,28 @@
 
 @section('content')
 <div id="div1" class="col-sm-10 sidenav">
-  <div style="background-color: #f4f6f9; background: url({{url('/') . '/storage/' . $user->wallpaper }}) no-repeat; background-size: cover; background-position:center center; padding: 1px; margin: 30px;">
+  <div class="profile text-left" >	
+	
     <div style="margin-top: 180px;">
       <span class="tieude">
-      <img src="{{ url('/') . '/storage/' . $user->avatar }}" class="img-circle" alt="Cinque Terre" width="100" height="100"> 
-      <span style="font-size: 30px;"> {{ $user->name }} </span><br/>
+      <img src="{{ url('/') . '/storage/' . Auth::user()->avatar }}" class="img-circle" alt="Cinque Terre" width="100" height="100"> 
+      <span style="font-size: 30px;"> {{ Auth::user()->name }} </span><br/>
       <br>
       </span>
     </div>
   </div>
   <div id="div2" class="col-sm-12 sidenav" style="font-family: cursive; font-size: 20px; padding: 0px; margin: 0px">
+    <a href="editprofile" style="padding-left: 35px;"><button class="btn btn-primary">Chỉnh sửa hồ sơ</button></a>
+	<a href="editwallpaper" style="padding-left: 35px;"><button class="btn btn-primary">Chỉnh sửa ảnh bìa</button></a>
     <br>
     <div id="div2" class="col-sm-6">
       @for( $i = 0; $i < round(count($pictures)/2); $i++)
       <div class="text-left user">
           <span class="tieude">
-              <img src="{{ url('/') . '/storage/' . Auth::user()->avatar }}" class="img-circle" alt="Cinque Terre" width="40" height="40"/>
-               {{ $user->name }}
+              <img src="{{ url('/') . '/storage/' . Auth::user()->avatar }}"" class="img-circle" alt="Cinque Terre" width="40" height="40"/>
+               {{ Auth::user()->name }}
               <br/>
-			  
+			  <br>
           </span>
 		  <p style="font-family: cursive"> {{ $pictures[$i]['description'] }} </p>
           <img src="{{ url('/') . '/storage/' . $pictures[$i]['filePath'] }}" alt="myphoto" style="width:100%"/>  

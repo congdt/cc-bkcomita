@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 //use App\Models\User;
 //use App\Models\Album;
 //use App\Models\Like;
@@ -55,6 +56,8 @@ class Picture extends Model
 			return false;
 		}
 		else{
+			// xoa file anh, xoa record
+			Storage::delete($picture->filePath);
 			Like::where("picture_id", $picture_id)->delete();
 			Comment::where("picture_id", $picture_id)->delete();
 			Picture::where("id", $picture_id)->delete();
@@ -88,9 +91,9 @@ class Picture extends Model
 	 */
 	public static function getComment(String $picture_id){
 		return Comment::join("users", "comments.user_id", "=", "users.id")
-				->select("users.id", "users.name", "comments.content", "comments.created_at")
+				->select("users.id as user_id", "users.name as user_name", "users.avatar as user_avatar", "comments.content as content", "comments.created_at as comment_created_at")
 				->where("comments.picture_id", "=", $picture_id)
-				->orderBy("comments.created_at")
+				->orderBy("comments.created_at", "desc")
 				->get();
 	}
 	

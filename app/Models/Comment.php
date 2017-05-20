@@ -19,7 +19,7 @@ class Comment extends Model
 	 */
 	public static function getUserComment(String $picture_id){
 		return Comment::join("users", "comments.user_id", "=", "users.id")
-				->select("users.id as user_comment_id", "users.name as user_comment_name")
+				->select("users.id as user_comment_id", "users.name as user_comment_name", "users.avatar as user_comment_avatar")
 				->where("comments.picture_id", "=", $picture_id)
 				->orderBy("comments.created_at", "desc")
 				->get();

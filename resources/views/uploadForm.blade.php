@@ -41,7 +41,7 @@
 
         {!! Form::close() !!}
 		-->
-		<form action="uploadForm" method="post" enctype="multipart/form-data">
+		<form action="/uploadForm" method="post" enctype="multipart/form-data">
 			<h3> Description </h3> 
 			<input type="text" name="description" size="100"> <br>
 			<h3> Privilege </h3> 

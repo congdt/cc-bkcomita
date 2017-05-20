@@ -20,7 +20,7 @@ class PictureController extends Controller
 	public function __construct(){
 		$this->middleware('auth');
 	}
-	public function upload(){
+	public function showUploadForm(){
 		$user = Auth::user();
 		$albums = Album::where("user_id", $user->id)->get();
 		
@@ -32,7 +32,7 @@ class PictureController extends Controller
 	public function showPic(Request $request){
 		//$this->validator($request->all())->validate();
 		$validator = Validator::make($request->all(), [
-			'image' => 'required|mimes:png,jpeg,jpg|max:2000'
+			'image' => 'required|mimes:png,jpeg,jpg,gif|max:10240'
 		]);
 		if($validator->fails()){
 			return redirect('uploadForm')->withErrors($validator);
@@ -109,37 +109,6 @@ class PictureController extends Controller
 		return redirect('index');
 	}
 	
-	public function update(Request $request){
-		//return "test";
-		$this->validateUpdatePicture($request);
-		//if($this->validateUpdatePicture($request)){
-			$data= $request->all();
-			if($data['operation'] == "delete"){
-				if(Picture::deletePicture($data['picture_id'])){
-					return redirect("home");
-				}
-				else{
-					return "Invalid picture - delete";
-				}
-			}
-			else if($data['operation']== "update"){
-				if(Picture::updatePicture($data) ){
-					return redirect("home");
-					
-				}
-				else 
-					return "Invalid picture - update ";
-			}
-			else {
-				return "something's wrong, fresh your page";
-			}
-				
-		//}
-		//else 
-			return "Something's wrong, fresh your page";
-		
-		
-	}
 	
 	protected function validateUpdatePicture(Request $request){
 		return $this->validate($request, [

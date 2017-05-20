@@ -26,29 +26,38 @@ Route::get("fail", function(){
 } );
 
 /*----------- Upload Route ---------------- */
-Route::get("uploadForm", "PictureController@upload");
+Route::get("uploadForm", "PictureController@showUploadForm");
 Route::post("storePic", "PictureController@store");
 Route::post("showPic", "PictureController@showPic");
 //Route::get("showLists", "PictureController@show");
 
 
 /*------------ Modify Picture, User info, Alubm ---------*/
-Route::get("updatePicture", function(){
-	return "hahah";
-} );
-Route::post("updatePicture", "PictureController@update");
+//Route::get('/home', 'UserController@showHome');
 
 Route::post("like", "UserController@like");
 Route::post("comment", "UserController@comment");
+
+Route::get("loadComment", "GuestController@loadComment");
+
+Route::get("profile", "UserController@showHome");
+
+Route::get("editprofile", "UserController@showUpdateProfileForm");
+Route::post("editprofile", "UserController@updateProfile");
+Route::get("editwallpaper", "UserController@showUpdateWallpaperForm");
+Route::post("editwallpaper", "UserController@updateWallpaper");
+Route::get("editalbum", "UserController@showEditAlbum");
+Route::get("editimage", "UserController@showEditPicture");
+Route::post("updatePicture", "UserController@updatePicture");
+Route::get("deleteimage", "UserController@showDeletePicture");
+Route::post("deleteimage", "UserController@deletePicture");
 /* ----------- Get Picture, User info, Album ------------------ */
 //Route::get("/{user_id}/", "UserController@showUser");
 //Route::get("/{user_id}/{album_id}", "UserController@showUserAlbum");
 
 //Route::get("admin", "UserController@adminshow");
-//Route::post("admin", "UserController$adminstore");
+//Route::post("admin", "UserController@adminstore");
 
 /* ---------------- Auth Route -------------------*/
 Auth::routes();
 
-Route::get('/home', 'UserController@showHome');
-//Route::get("/authHome", 'HomeController@index');

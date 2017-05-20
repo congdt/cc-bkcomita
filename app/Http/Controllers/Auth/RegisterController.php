@@ -6,7 +6,7 @@ use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use App\Http\Controllers\ActivationController;
+use App\Http\Controllers\Auth\ActivationController;
 use Illuminate\Http\Request;
 
 class RegisterController extends Controller
@@ -23,7 +23,7 @@ class RegisterController extends Controller
     */
 
     use RegistersUsers;
-
+	
     /**
      * Where to redirect users after registration.
      *
@@ -49,6 +49,7 @@ class RegisterController extends Controller
 	public function register(Request $request){
 		$this->validator($request->all())->validate();
 		$tmp = app('App\Http\Controllers\ActivationController')->sendActivationMail($request->all());
+		//$tmp = $this->sendActivationMail($request->all());
 		if($tmp == 1){
 			return redirect("/fail");
 		}
@@ -86,6 +87,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+			'avatar' => 'default_avatar.png'
         ]);
     }
 }

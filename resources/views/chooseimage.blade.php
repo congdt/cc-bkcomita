@@ -3,12 +3,20 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="index.js" type="text/javascript"></script>
+  <script src="{{ url('/') . '/storage/js/index.js' }}" type="text/javascript"></script>
+  -->
+  <link rel="stylesheet" href="{{ url('/') . '/storage/css/bootstrap.min.css' }}">
+  <link rel="stylesheet" href="{{ url('/') . '/storage/css/w3.css' }}">
+  <link rel="stylesheet" href="{{ url('/') . '/storage/css/font-awesome.min.css' }}">
+  <script src="{{ url('/') . '/storage/js/jquery.min.js' }}"></script>
+  <script src="{{ url('/') . '/storage/js/bootstrap.min.js' }}"></script>
+  <script src="{{ url('/') . '/storage/js/index.js' }}" type="text/javascript"></script>
   <title>Chọn ảnh</title>
   <style>
     /*CSS cho phần tiêu đề */
@@ -83,7 +91,10 @@
   <div class="container-fluid">
     <ul class="nav navbar-nav">
       <li><a href="index">Trang chủ</a></li>
-      <li><a href="#"> Trang cá nhân</a></li>
+      <li><a href="/profile"> 
+		<img src="{{ url('/') . '/storage/' . Auth::user()->avatar }}" class="img-circle" alt="Cinque Terre" width="25" height="25"/> 
+		{{ Auth::user()->name }}
+	  </a></li>
     </ul>
     <form class="navbar-form navbar-left">
       <div class="input-group">
@@ -96,8 +107,8 @@
       </div>
     </form>
     <ul id="login" class="nav navbar-nav navbar-right">
-      <li><a href="signup"><span class="glyphicon glyphicon-user"></span> Đăng kí</a></li>
-      <li><a href="login"><span class="glyphicon glyphicon-log-in"></span> Đăng nhập</a></li>
+      <li><a href="/logout"><span class="glyphicon glyphicon-user"></span> Đăng xuất </a></li>
+      
     </ul>
   </div>
 </nav> 

@@ -5,7 +5,7 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-
+use \Illuminate\Http\Response;
 class Handler extends ExceptionHandler
 {
     /**
@@ -44,7 +44,34 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        return parent::render($request, $exception);
+		// sửa trong if 
+		return parent::render($request, $exception);
+		if($exception instanceof \Symfony\Component\HttpKernel\Exception\HttpException)
+		{
+			// some code
+			// NOT FOUND
+			return response()->view("tokenMismatch", [], 404);
+		}
+		else if($exception instanceof MethodNotAllowedHttpException ){
+			// Method not allowed
+			return response()->view("405", [], 405);
+		}
+		else if($exception instanceof TokenMismatchException ){
+			// forbidden
+			return response()->view("tokenMismatch", [], 403);
+		}
+		else if($exception instanceof AuthenticationException){
+			if ($request->expectsJson()) {
+				return response()->json(['error' => 'Unauthenticated.'], 401);
+			}
+
+			return redirect()->guest(route('login'));
+		}
+		else{
+			return response()->view("unspecifiedException", [], 422);
+		}
+    
+        
     }
 
     /**

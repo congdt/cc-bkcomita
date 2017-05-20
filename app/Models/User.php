@@ -15,7 +15,9 @@ class User extends Model implements Authenticatable
 	protected $fillable = [
 		"name",
 		"password",
-		"email"
+		"email",
+		"avatar",
+		"wallpaper",
 	];
 	
 	public static function getUser(String $user_id){
