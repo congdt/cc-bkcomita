@@ -10,6 +10,21 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+	Route::get('api/v1/pictures', 'GuestController@apiGetPictures');
+	// get all user liked a picture 
+	Route::get('api/v1/likes', 'GuestController@apiGetLikes');
+	// get all comments 
+	Route::get('api/v1/comments', 'GuestController@apiGetComments');
+	
+	// get user from picture 
+	Route::get('api/v1/user', 'GuestController@apiGetUser');
+	
+	Route::post('api/v1/picture', 'APIController@apiUploadPicture');
+	Route::post('api/v1/like', 'APIController@apiLike');
+	Route::post('api/v1/comment', "APIController@apiComment");
+
+
+
 Route::get('index', "GuestController@showIndex");
 Route::get('/', "GuestController@showIndex");
 Route::get("/user/{user_id}", "GuestController@showUserPage")

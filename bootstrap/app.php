@@ -51,7 +51,7 @@ $app->singleton(
 | from the actual running of the application and sending responses.
 |
 */
-$app->register(Jenssegers\Mongodb\MongodbServiceProvider::class);
+//$app->register(Jenssegers\Mongodb\MongodbServiceProvider::class);
 //$app->withEloquent();
 
 return $app;

@@ -203,7 +203,7 @@ class UserController extends Controller
 			"picture_id" => $picture->id,
 			"user_name" => $user->name,
 			"user_id"	=> $user->id,
-			"user_avatar" => url('/') . '/storage/' . $user->avatar,
+			"user_avatar" => Storage::url($user->avatar),
 			"comment_content" => $comment->content,
 			"created_at"	=> $comment->created_at,
 		]);

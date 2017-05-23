@@ -7,8 +7,8 @@
 		@for($i = 0; $i < round(count($pictures)/2); $i++)
 		<div class="text-left user">
 		    <span class="tieude">
-		        <a href="{{ url('/') . '/user/' . $pictures[$i]['user_id'] }}">
-					<img src="{{ url('/') . '/storage/' . $pictures[$i]['user_avatar'] }}" class="img-circle" alt="Cinque Terre" width="40" height="40"/>
+		        <a href="{{ Storage::url( $pictures[$i]['user_id']) }}">
+					<img src="{{ Storage::url( $pictures[$i]['user_avatar']) }}" class="img-circle" alt="Cinque Terre" width="40" height="40"/>
 					{{$pictures[$i]['user_name'] }} 
 				</a>
 		        
@@ -16,7 +16,7 @@
 		    </span>
 			<br>
 			<p style="font-family: cursive"> {{ $pictures[$i]['description'] }} </p>
-		    <img src="{{ url('/') . '/storage/' . $pictures[$i]['filePath'] }}" alt="myphoto" style="width:100%"/>  
+		    <img src="{{ Storage::url($pictures[$i]['filePath']) }}" alt="myphoto" style="width:100%"/>  
 		    <br>
 		    <br>
 		    @if (Auth::check())
@@ -37,21 +37,22 @@
 		    @if(Auth::check())
 			<div class="media" style="font-family : cursive;">
 			  <div class="media-left">
-				<img src=" {{ url('/') . '/storage/' . Auth::user()->avatar }} " class="media-object" style="height:40px;">
+				<img src=" {{ Storage::url(Auth::user()->avatar) }} " class="media-object" style="height:40px;">
 			  </div>
 			  <div class="media-body">
 				<input id="comment_content_{{ $pictures[$i]['id'] }}" type="text" class="form-control" placeholder="Viết bình luận">
 				<button id="comment" style="font-size: 12px"  onclick="ajax_comment('{{ $pictures[$i]['id'] }}')"> Bình luận </button>
 			  </div>
 			</div>
+			
+			 @endif
 			<div id="display_comment_id_{{ $pictures[$i]['id'] }}">
 			</div>
-			 @endif
 			<div id="load_comment_{{ $pictures[$i]['id'] }}">  
 			@for( $j = 0; ($j < count($pictures[$i]['comments']) && $j < 2); $j++)
 				<div class="media" style="font-family: cursive;">
 					<div class="media-left">
-						<img class="media-object" style="width:60px; height:40px;" src="{{ url('/') . '/storage/' . $pictures[$i]['users_comment'][$j]->user_comment_avatar }}" >
+						<img class="media-object" style="width:60px; height:40px;" src="{{ Storage::url($pictures[$i]['users_comment'][$j]->user_comment_avatar) }}" >
 						
 					</div>
 					<div class="media-body">
@@ -69,15 +70,15 @@
 		@for($i = round(count($pictures)/2); $i < count($pictures); $i++)
 		<div class="text-left user">
 		    <span class="tieude">
-		        <a href="{{ url('/') . '/user/' . $pictures[$i]['user_id'] }}">
-					<img src="{{ url('/') . '/storage/' . $pictures[$i]['user_avatar'] }}" class="img-circle" alt="Cinque Terre" width="40" height="40"/>
+		        <a href="{{ Storage::url($pictures[$i]['user_id']) }}">
+					<img src="{{ Storage::url($pictures[$i]['user_avatar']) }}" class="img-circle" alt="Cinque Terre" width="40" height="40"/>
 					{{$pictures[$i]['user_name'] }} 
 				</a>
 		        <br>
 		    </span>
 			<br>
 			<p style="font-family: cursive"> {{ $pictures[$i]['description'] }} </p>
-		    <img src="{{ url('/') . '/storage/' . $pictures[$i]['filePath'] }}" alt="myphoto" style="width:100%"/>  
+		    <img src="{{ Storage::url($pictures[$i]['filePath']) }}" alt="myphoto" style="width:100%"/>  
 		    <br>
 		    <br>
 			@if (Auth::check())
@@ -99,21 +100,22 @@
 			@if(Auth::check())
 			<div class="media" style="font-family : cursive;">
 			  <div class="media-left">
-				<img src=" {{ url('/') . '/storage/' . Auth::user()->avatar }} " class="media-object" style="height:40px;">
+				<img src=" {{ Storage::url( Auth::user()->avatar) }} " class="media-object" style="height:40px;">
 			  </div>
 			  <div class="media-body">
 				<input id="comment_content_{{ $pictures[$i]['id'] }}" type="text" class="form-control" placeholder="Viết bình luận">
 				<button id="comment" style="font-size: 12px" onclick="ajax_comment('{{ $pictures[$i]['id'] }}')" > Bình luận </button>
 			  </div>
 			</div>
-			<div id="display_comment_id_{{ $pictures[$i]['id'] }}">
-			</div>
+			
 			 @endif
+			 <div id="display_comment_id_{{ $pictures[$i]['id'] }}">
+			</div>
 			<div id="load_comment_{{ $pictures[$i]['id'] }}">  
 			@for( $j = 0; ($j < count($pictures[$i]['comments']) && $j < 2); $j++)
 				<div class="media" style="font-family: cursive;">
 					<div class="media-left">
-						<img class="media-object" style="width:60px; height:40px;" src="{{ url('/') . '/storage/' . $pictures[$i]['users_comment'][$j]->user_comment_avatar }}" >
+						<img class="media-object" style="width:60px; height:40px;" src="{{ Storage::url($pictures[$i]['users_comment'][$j]->user_comment_avatar) }}" >
 						
 					</div>
 					<div class="media-body">

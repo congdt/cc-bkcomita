@@ -18,6 +18,7 @@ class User extends Model implements Authenticatable
 		"email",
 		"avatar",
 		"wallpaper",
+		"api_token"
 	];
 	
 	public static function getUser(String $user_id){

@@ -91,6 +91,7 @@ class ActivationController extends Controller
 				'password' => $pending_user['password'],
 				'avatar' => 'default_avatar.png',
 				'wallpaper' => 'default_wall.jpg',
+				'api_token' => str_random(60)
 			]);
 			Album::create([
 				'name' => 'My Pic',

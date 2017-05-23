@@ -15,7 +15,7 @@
     </ul>
   </div>
   <br>
-  <img src="{{ url('/') . '/storage/' . $pictures[$i]['filePath'] }}" width="60%" alt="Lỗi load ảnh">
+  <img src="{{ Storage::url($pictures[$i]['filePath']) }}" width="60%" alt="Lỗi load ảnh">
   <br>
   <hr>
   @endfor

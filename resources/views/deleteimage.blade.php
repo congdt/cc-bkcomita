@@ -7,7 +7,7 @@
 <form action="deleteimage" method="POST">
   <label>Bạn có thực sự muốn xóa ảnh? </label>
   <hr>
-  <img src="{{ url('/') . '/storage/' . $picture['filePath'] }}" width="60%" alt="Lỗi load ảnh">
+  <img src="{{ Storage::url($picture['filePath']) }}" width="60%" alt="Lỗi load ảnh">
   <input type="hidden" name="picture_id" value="{{ $picture['id'] }}">
   <hr>
   <button class="btn btn-primary">Xóa</button>

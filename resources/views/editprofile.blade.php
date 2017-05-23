@@ -36,18 +36,18 @@
       <tr>
         <td>
           <input type="radio" value="{{ $pictures[$i]->id }}" name="picture_id">
-          <img src="{{ url('/') . '/storage/' . $pictures[$i]->filePath }}" style="display: block" width="100%" >
+          <img src="{{ Storage::url($pictures[$i]->filePath) }}" style="display: block" width="100%" >
         </td>
 		@if($i+1 < count($pictures))
         <td>
           <input type="radio" value="{{ $pictures[$i+1]->id }}" name="picture_id">
-          <img src="{{ url('/') . '/storage/' . $pictures[$i+1]->filePath }}" style="display: block" width="100%">
+          <img src="{{ Storage::url($pictures[$i+1]->filePath) }}" style="display: block" width="100%">
         </td>
 		@endif
 		@if($i+2 < count($pictures))
         <td>
           <input type="radio" value="{{ $pictures[$i+2]->id }}" name="picture_id">
-          <img src="{{ url('/') . '/storage/' . $pictures[$i+2]->filePath }}" style="display: block" width="100%">
+          <img src="{{ Storage::url($pictures[$i+2]->filePath) }}" style="display: block" width="100%">
         </td>
 		@endif
       </tr>

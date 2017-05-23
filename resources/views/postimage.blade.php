@@ -147,7 +147,7 @@
         </span>
         <textarea class="form-control" rows="5" name="description" placeholder="Miêu tả ảnh"></textarea>
         <br>
-        <img src="{{ url('/') . '/storage/' . $filePath }}" width=500px>
+        <img src="{{ Storage::url($filePath) }}" width=500px>
         <input type="hidden" name="filePath" value='{{ $filePath }}'>
 		
         <div class="col-xs-2 form-group">

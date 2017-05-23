@@ -8,7 +8,7 @@
 	
     <div style="margin-top: 180px;">
       <span class="tieude">
-      <img src="{{ url('/') . '/storage/' . Auth::user()->avatar }}" class="img-circle" alt="Cinque Terre" width="100" height="100"> 
+      <img src="{{ Storage::url(Auth::user()->avatar) }}" class="img-circle" alt="Cinque Terre" width="100" height="100"> 
       <span style="font-size: 30px;"> {{ Auth::user()->name }} </span><br/>
       <br>
       </span>
@@ -22,13 +22,13 @@
       @for( $i = 0; $i < round(count($pictures)/2); $i++)
       <div class="text-left user">
           <span class="tieude">
-              <img src="{{ url('/') . '/storage/' . Auth::user()->avatar }}"" class="img-circle" alt="Cinque Terre" width="40" height="40"/>
+              <img src="{{ Storage::url(Auth::user()->avatar) }}"" class="img-circle" alt="Cinque Terre" width="40" height="40"/>
                {{ Auth::user()->name }}
               <br/>
 			  <br>
           </span>
 		  <p style="font-family: cursive"> {{ $pictures[$i]['description'] }} </p>
-          <img src="{{ url('/') . '/storage/' . $pictures[$i]['filePath'] }}" alt="myphoto" style="width:100%"/>  
+          <img src="{{ Storage::url( $pictures[$i]['filePath']) }}" alt="myphoto" style="width:100%"/>  
           <br>
           <br>
           @if( $pictures[$i]['button'] === 'Like' )
@@ -45,7 +45,7 @@
 		  <!-- hien thi comment khi ban nut show_comment  -->
 			<div class="media" style="font-family : cursive;">
 			  <div class="media-left">
-				<img src=" {{ url('/') . '/storage/' . Auth::user()->avatar }} " class="media-object" style="height:40px;">
+				<img src=" {{ Storage::url(Auth::user()->avatar) }} " class="media-object" style="height:40px;">
 			  </div>
 			  <div class="media-body">
 				<input id="comment_content_{{ $pictures[$i]['id'] }}" type="text" class="form-control" placeholder="Viết bình luận">
@@ -65,13 +65,13 @@
       @for($i = round(count($pictures)/2); $i < count($pictures); $i++)
       <div class="text-left user">
           <span class="tieude">
-              <img src="{{ url('/') . '/storage/' . Auth::user()->avatar }}"" class="img-circle" alt="Cinque Terre" width="40" height="40"/>
+              <img src="{{ Storage::url(Auth::user()->avatar) }}"" class="img-circle" alt="Cinque Terre" width="40" height="40"/>
               {{ Auth::user()->name }}
               <br/>
 			  <br>
           </span>
 		  <p style="font-family: cursive"> {{ $pictures[$i]['description'] }} </p>
-          <img src="{{ url('/') . '/storage/' . $pictures[$i]['filePath'] }}" alt="myphoto" style="width:100%"/>  
+          <img src="{{ Storage::url( $pictures[$i]['filePath']) }}" alt="myphoto" style="width:100%"/>  
           <br>
           <br>
           @if( $pictures[$i]['button'] === 'Like' )
@@ -86,7 +86,7 @@
           <!-- hien thi comment khi ban nut show_comment  -->
 			<div class="media" style="font-family : cursive;">
 			  <div class="media-left">
-				<img src=" {{ url('/') . '/storage/' . Auth::user()->avatar }} " class="media-object" style="height:40px;">
+				<img src=" {{ Storage::url( Auth::user()->avatar) }} " class="media-object" style="height:40px;">
 			  </div>
 			  <div class="media-body">
 				<input id="comment_content_{{ $pictures[$i]['id'] }}" type="text" class="form-control" placeholder="Viết bình luận">

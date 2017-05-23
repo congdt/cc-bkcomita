@@ -20,7 +20,7 @@
     </select>
   </div>
   <br>
-  <img src="{{ url('/') . '/storage/' . $picture['filePath'] }}" width="60%" alt="Lỗi load ảnh">
+  <img src="{{ Storage::url($picture['filePath']) }}" width="60%" alt="Lỗi load ảnh">
   <hr>
   <input type="hidden" name="picture_id" value="{{ $picture['id'] }}">
   <input type="submit" value="Xóa">

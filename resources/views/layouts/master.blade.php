@@ -3,12 +3,21 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--
   <link rel="stylesheet" href="{{ url('/') . '/storage/css/bootstrap.min.css' }}">
   <link rel="stylesheet" href="{{ url('/') . '/storage/css/w3.css' }}">
   <link rel="stylesheet" href="{{ url('/') . '/storage/css/font-awesome.min.css' }}">
   <script src="{{ url('/') . '/storage/js/jquery.min.js' }}"></script>
   <script src="{{ url('/') . '/storage/js/bootstrap.min.js' }}"></script>
   <script src="{{ url('/') . '/storage/js/index.js' }}" type="text/javascript"></script>
+  -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="{{ url('/') . '/storage/js/index.js' }}" type="text/javascript"></script>
+  
   <title>@yield('title')</title>
   <style>
     /*CSS cho phần tiêu đề */
@@ -65,7 +74,7 @@
       height: 300px;
 	  width : 1040px;
     @if (Auth::check())
-	  background: url({{url('/') . '/storage/' . Auth::user()->wallpaper }}) no-repeat; 
+	  background: url({{ Storage::url(Auth::user()->wallpaper) }}) no-repeat; 
 	  background-size: cover;
 	  background-position: center center;
 	@endif
@@ -98,7 +107,7 @@
       <li id="trangchu"><a href="/index">Trang chủ</a></li>
       @yield('profile')
 	  @if (Auth::check())
-      <li id="trangcanhan"><a href="/profile"><img src="{{ url('/') . '/storage/' . Auth::user()->avatar }}" class="img-circle" alt="Cinque Terre" width="25" height="25"/> {{ Auth::user()->name }}</a></li>
+      <li id="trangcanhan"><a href="/profile"><img src="{{ Storage::url(Auth::user()->avatar) }}" class="img-circle" alt="Cinque Terre" width="25" height="25"/> {{ Auth::user()->name }}</a></li>
 	  @endif 
     </ul>
     <form class="navbar-form navbar-left">

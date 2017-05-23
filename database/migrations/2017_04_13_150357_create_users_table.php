@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
 				$table->string("email", 256);
 				$table->string("avatar", 255);
 				$table->string("wallpaper", 255);
+				$table->string("api_token", 60)->unique();
 				//$table->string("phone", 15);
 				//$table->string("address", 100);
 				$table->rememberToken();

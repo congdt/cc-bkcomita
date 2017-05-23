@@ -26,7 +26,7 @@
 <div id="wallpaper" class="col-sm-10 sidenav">
   <div style="height: 300px;
 	  width : 1040px;
-	  background: url({{url('/') . '/storage/' . Auth::user()->wallpaper }}) no-repeat; 
+	  background: url({{ Storage::url(Auth::user()->wallpaper) }}) no-repeat; 
 	  background-size: 1040px 300px;
       padding: 1px;
 	  
@@ -34,7 +34,7 @@
 	
     <div style="margin-top: 180px;">
       <span class="tieude">
-      <img src="{{ url('/') . '/storage/' . Auth::user()->avatar }}" class="img-circle" alt="Cinque Terre" width="100" height="100"> 
+      <img src="{{ Storage::url(Auth::user()->avatar) }}" class="img-circle" alt="Cinque Terre" width="100" height="100"> 
       <span style="font-size: 30px;"> {{ Auth::user()->name }} </span><br/>
       <br>
       </span>
@@ -61,18 +61,18 @@
         <td>
           <input type="radio" value="{{ $pictures[$i]->id }}" name="picture_id">
 		  
-          <img src="{{ url('/') . '/storage/' . $pictures[$i]->filePath }}" style="display: block;" width="100%"  >
+          <img src="{{ Storage::url( $pictures[$i]->filePath) }}" style="display: block;" width="100%"  >
         </td>
 		@if($i+1 < count($pictures))
         <td>
           <input type="radio" value="{{ $pictures[$i+1]->id }}" name="picture_id">
-          <img src="{{ url('/') . '/storage/' . $pictures[$i+1]->filePath }}" style="display: block" width="100%" >
+          <img src="{{ Storage::url($pictures[$i+1]->filePath) }}" style="display: block" width="100%" >
         </td>
 		@endif
 		@if($i+2 < count($pictures))
         <td>
           <input type="radio" value="{{ $pictures[$i+2]->id }}" name="picture_id">
-          <img src="{{ url('/') . '/storage/' . $pictures[$i+2]->filePath }}" style="display: block" width="100%" >
+          <img src="{{ Storage::url($pictures[$i+2]->filePath) }}" style="display: block" width="100%" >
         </td>
 		@endif
       </tr>
