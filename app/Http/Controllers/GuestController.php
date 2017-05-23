@@ -34,11 +34,24 @@ class GuestController extends Controller
 		if($picture == null){
 			return response()->json('Picture Is Not Found', '404');
 		}
+		$url = 'https://s3.us-east-2.amazonaws.com/bkcomita-epic/';
 		$comments = Picture::getComment($data['picture']);
-		return response()->json($comments);
+		return response()->json(["title" => "success", "url" =>  $url , "picture_id" => $picture->id, "comments" => $comments], 200);
 	}
 	
-	
+	public function loadComment(Request $request){
+		$data = $request->all();
+		if (!isset($data['picture_id']) ){
+			return Response::json(["title" => "Wrong input"]);
+		}
+		$picture = Picture::getPicture($data['picture_id']);
+		if($picture == NULL){
+			return Response::json(['title' => "Invalid Picture"]);
+		}
+		$comments = Picture::getComment($picture->id)->toArray();
+		$url = 'https://s3.us-east-2.amazonaws.com/bkcomita-epic/';
+		return Response::json(["title" => "success", "url" =>  $url , "picture_id" => $picture->id, "comments" => $comments]);
+	}
 	
 	public function apiGetPictures(Request $request){
 		$pictures = Picture::getAllPublicPicture()->toArray();
@@ -70,19 +83,7 @@ class GuestController extends Controller
 		}
 		return Response::json($pictures);
 	}
-	public function loadComment(Request $request){
-		$data = $request->all();
-		if (!isset($data['picture_id']) ){
-			return Response::json(["title" => "Wrong input"]);
-		}
-		$picture = Picture::getPicture($data['picture_id']);
-		if($picture == NULL){
-			return Response::json(['title' => "Invalid Picture"]);
-		}
-		$comments = Picture::getComment($picture->id)->toArray();
-		$url = 'https://s3.us-east-2.amazonaws.com/bkcomita-epic/';
-		return Response::json(["title" => "success", "url" =>  $url , "picture_id" => $picture->id, "comments" => $comments]);
-	}
+	
 	
     //
 	public function showIndex(){

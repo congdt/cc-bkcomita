@@ -149,11 +149,11 @@ function loadComment(picture_id)
 {
 	
 	$.ajax({
-		url : "/loadComment",
+		url : "/api/v1/comments",
 		type : "get",
 		dataType:"json",
 		data : {
-			'picture_id' : picture_id
+			'picture' : picture_id
 		},
 		success : function (result){
 			console.log(result);
